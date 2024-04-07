@@ -1,19 +1,21 @@
-import { useState } from "react"
+import { FC, useState } from "react"
 import { ToastContainer } from 'react-toastify';
 import Email from "./Email";
 import Password from "./Password";
 import { Link } from "react-router-dom";
-import { emailRegex } from "../shared/constants";
+import { emailRegex, passwordRegex, useremail } from "../shared/constants";
 import errorToast from "../shared/utils";
+import { useNavigate } from "react-router-dom";
 
 
-const Signup = () => {
+
+const Signup:FC = () => {
 
     const [loginText, setLoginText] = useState(""); 
     const [password, setPassword] = useState("");     
     const [password2, setPassword2] = useState("");   
     
-   
+    const navigate = useNavigate()
 
     const handleOnClick = () => {
 
@@ -30,11 +32,22 @@ const Signup = () => {
 
     
         if(password !== password2){
-
             errorToast('Passwords do not match, Please try again!')
+            return
         }
 
+
+        if(!passwordRegex.test(password)){
+            errorToast('Your password is weak. It must contain at least one lowercase letter, one uppercase letter, one digit, and be at least 8 characters long. Please try again!')
+            return
+        }
+
+        if(loginText === useremail){
+            errorToast(`User with email ${loginText} already exists. Please log in!`)
+            return
+        }
   
+        navigate("/success");
 
     }
 
@@ -62,7 +75,7 @@ const Signup = () => {
 
                         <div className="h-line">or</div>
 
-                        <Email loginText={loginText} setLoginText={setLoginText} isVisible={true}/>
+                        <Email loginText={loginText} setLoginText={setLoginText}/>
     
                         <Password password={password} setPassword={setPassword} labelText={"Password"}/>
 
@@ -91,7 +104,7 @@ const Signup = () => {
                         </div>
                  
 
-                        <div className="text-gray-500 cursor-default text-center mt-6 md:text-left md:mt-12">Already have an account? <span className="text-cyan-700 cursor-pointer"><Link to="/">Sign in</Link></span></div>
+                        <div className="text-gray-500 cursor-default text-center mt-6 md:text-left md:mt-12">Already have an account? <span className="text-cyan-700 cursor-pointer"><Link to="/">Log in</Link></span></div>
 
                     </div>
                     

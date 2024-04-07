@@ -1,10 +1,11 @@
 import { useState } from "react"
-import { emailRegex } from "../shared/constants";
+import { emailRegex, useremail, userpassword } from "../shared/constants";
 import { ToastContainer } from 'react-toastify';
 import Email from "./Email";
 import Password from "./Password";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import errorToast from "../shared/utils";
+
 
 const Login = () => {
 
@@ -12,6 +13,7 @@ const Login = () => {
     const [password, setPassword] = useState("");    
     const [isVisible, setIsVisible] = useState(true);    
 
+    const navigate = useNavigate()
 
     const handleOnClick = () => {
 
@@ -22,13 +24,30 @@ const Login = () => {
 
         setIsVisible(false)
 
+        if(password=== ""){
+            return
+        }
+
+        if(loginText !== useremail){
+            errorToast(`User with email :- ${loginText} does not exist, Please Sign Up!`)
+            return
+        }
+
+        if(loginText === useremail && password !== userpassword){
+            errorToast('Incorrect Password, Please try again!')
+            return
+        }
+        
+        navigate("successful_login");
+
     }
 
     return <div className='main-div'>
+
                 <div className="cont">
                     
                     <div className="p-cont">
-
+                        
                         <div className="header">
                                 Log In
                         </div>  
@@ -48,7 +67,7 @@ const Login = () => {
 
                         {isVisible ? (<div className="h-line">or</div>) : null}
 
-                        <Email loginText={loginText} setLoginText={setLoginText} isVisible={isVisible}/>
+                        <Email loginText={loginText} setLoginText={setLoginText}/>
     
                         {!isVisible ? (<Password password={password} setPassword={setPassword} labelText={"Password"}/>) : null}
 

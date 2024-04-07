@@ -5,7 +5,7 @@ const errorToast = (text: string) => {
     
     toast.error(text, {
         position: "top-right",
-        autoClose: 1069,
+        autoClose: 2069,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

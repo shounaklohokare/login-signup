@@ -9,6 +9,7 @@ import Signup from './components/Signup';
 
 import 'react-toastify/dist/ReactToastify.css'
 import SuccessfulSignUp from './components/SuccessfulSignUp';
+import SuccessfulLogin from './components/SuccessfulLogin';
 
 const App = () => {
 
@@ -22,7 +23,7 @@ const router = createBrowserRouter([{
     element: <App/>,
     children : [
         {
-            path: "/",
+            path: "",
             element: <Login/>
         },
         {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([{
         {
           path: "/success",
           element: <SuccessfulSignUp/>
+        },
+        {
+          path: "/successful_login",
+          element: <SuccessfulLogin/>
         }
     ],
     errorElement: <Error/>
