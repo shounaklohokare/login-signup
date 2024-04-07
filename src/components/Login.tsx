@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, FC } from "react"
 import { emailRegex, useremail, userpassword } from "../shared/constants";
 import { ToastContainer } from 'react-toastify';
 import Email from "./Email";
@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import errorToast from "../shared/utils";
 
 
-const Login = () => {
+const Login:FC = () => {
 
     const [loginText, setLoginText] = useState(""); 
     const [password, setPassword] = useState("");    
@@ -53,13 +53,13 @@ const Login = () => {
                         </div>  
 
                         
-                        {isVisible ? (<div className="flex flex-col space-y-6">
+                        {isVisible ? (<div className="alt-cont">
                                 <button className="alt-login-button">
-                                    <img src="google.png" alt="" className="w-9"/>
+                                    <img src="google.png" alt="" className="w-7"/>
                                     <span className="font-thin">Log in with Google</span>
                                 </button>
                                 <button className="alt-login-button">
-                                    <img src="apple.png" alt="" className="w-9"/>
+                                    <img src="apple.png" alt="" className="w-7"/>
                                     <span className="font-thin">Log in with Apple</span>
                                 </button>
                         </div>) : null}
@@ -69,7 +69,7 @@ const Login = () => {
 
                         <Email loginText={loginText} setLoginText={setLoginText}/>
     
-                        {!isVisible ? (<Password password={password} setPassword={setPassword} labelText={"Password"}/>) : null}
+                        {!isVisible ? (<Password password={password}  setPassword={setPassword} labelText={"Password"}/>) : null}
 
 
                         <div className="login-box">

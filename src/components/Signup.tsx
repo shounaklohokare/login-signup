@@ -54,20 +54,20 @@ const Signup:FC = () => {
     return <div className='main-div'>
                 <div className="cont">
                     
-                    <div className="p-cont">
+                    <div className="px-8 py-4 md:p-16">
 
                         <div className="header">
                                 Sign Up
                         </div>  
 
                         
-                        <div className="flex flex-col space-y-6">
+                        <div className="alt-cont">
                                 <button className="alt-login-button">
-                                    <img src="google.png" alt="" className="w-9"/>
-                                    <span className="font-thin">Sign Up in with Google</span>
+                                    <img src="google.png" alt="" className="w-7"/>
+                                    <span className="font-thin">Sign Up with Google</span>
                                 </button>
                                 <button className="alt-login-button">
-                                    <img src="apple.png" alt="" className="w-9"/>
+                                    <img src="apple.png" alt="" className="w-7"/>
                                     <span className="font-thin">Sign Up with Apple</span>
                                 </button>
                         </div>
@@ -82,7 +82,7 @@ const Signup:FC = () => {
                         <Password password={password2} setPassword={setPassword2} labelText={"Confirm Password"}/>
 
 
-                        <div className="md:mx-16 md:px-4">
+                        <div className="md:mx-12 md:px-4">
                             <button className="signup-button" onClick={handleOnClick}>
                                         <span>Sign Up</span>
                                         <svg
@@ -104,7 +104,7 @@ const Signup:FC = () => {
                         </div>
                  
 
-                        <div className="text-gray-500 cursor-default text-center mt-6 md:text-left md:mt-12">Already have an account? <span className="text-cyan-700 cursor-pointer"><Link to="/">Log in</Link></span></div>
+                        <div className="text-gray-500 cursor-default text-center mt-4 md:text-left md:mt-12">Already have an account? <span className="text-cyan-700 cursor-pointer"><Link to="/">Log in</Link></span></div>
 
                     </div>
                     
